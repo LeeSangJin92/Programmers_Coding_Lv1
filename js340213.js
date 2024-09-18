@@ -11,6 +11,7 @@ const solution = (video_len, pos, op_start, op_end, commands) => {
     commands.forEach(commandStr => {
         commandStr=="next" && nextAction();
         commandStr=="prev" && prevAction();
+        checkOpTime();
     });
 
     let resultMM = Math.floor(posTime/60000);
@@ -29,7 +30,12 @@ const solution = (video_len, pos, op_start, op_end, commands) => {
     }
     
     function prevAction(){
-        posTime = ((posTime-10000)>=0)&&posTime-10000||0;
+        posTime = (((posTime-10000)<=opEnd)&&((posTime-10000)>=opStart))&&opEnd||
+        ((posTime-10000)>=0)&&posTime-10000||0;
+    }
+
+    function checkOpTime(){
+        posTime = (posTime>=opStart&&posTime<=opEnd)&&opEnd||posTime;
     }
 }
 
@@ -38,5 +44,6 @@ const setTimer = (timeStr) => timeStr.split(":").map(data=>+data).reduce((result
 
 
 // console.log(solution("34:33", "00:55", "00:55" ,"02:55",["prev","next","prev"]));
-console.log(solution("34:33", "00:05", "00:55" ,"02:55",["prev","prev","prev","next"]));
+// console.log(solution("34:33", "00:05", "00:55" ,"02:55",["prev","prev","prev","next"]));
 // console.log(solution("34:33", "09:50", "10:00", "13:00", ["next", "next", "next", "prev"]));
+console.log(solution("30:00", "00:08", "00:00", "00:05", ["prev"]));
