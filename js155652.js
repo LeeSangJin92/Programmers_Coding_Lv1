@@ -9,7 +9,7 @@ const solution = (s, skip, index) => {
         let maxTurn = index;
         let resultCode = code;
         for(let turn = 1;turn<=maxTurn;turn++){
-            resultCode = code+turn+(code+turn>122&&-26)
+            resultCode = ++resultCode+(resultCode>122&&-26)
             skipList.includes(resultCode)&&maxTurn++;
         }
         return resultCode;
@@ -18,6 +18,9 @@ const solution = (s, skip, index) => {
     // 산출된 아스키코드를 문자열로 반환
     return resultList.map(code=>String.fromCharCode(code)).join('')
 }
+// console.log(solution("ybcde","az",1));
+console.log(solution("zzzzzz","abcdefghijklmnopqrstuvwxy",6));
+console.log(solution("yyyyy","za",2));
 console.log(solution("aukks", "wbqd", 5));
 console.log(solution("z", "a", 1));
 console.log(solution("a", "bcdefghijk", 20));  // 정답 o 가 나와야함
