@@ -1,0 +1,1 @@
+const solution = (n) => [...n+""].reduce((result, number)=>+number + result,0)
