@@ -8,7 +8,7 @@ const solution = (n, m) => {
     // 초기값이 비었을 경우 계산
     if(!divisor){
         // 작은 수의 루트부터 차감하면서 최대 공약수 계산
-        let point = Math.floor(Math.sqrt(n>=m&&m||n));
+        let point = Math.floor((n>=m&&m||n)/2);
         while(point>1){
             if(n%point==0&&m%point==0){
                 break;
@@ -21,6 +21,7 @@ const solution = (n, m) => {
 
     return [divisor, multiple];
 }
-console.log(solution(3,12))
-console.log(solution(1,1))
-console.log(solution(8,10))
+// console.log(solution(3,12))
+// console.log(solution(1,1))
+// console.log(solution(8,10))
+console.log(solution(12,18))
